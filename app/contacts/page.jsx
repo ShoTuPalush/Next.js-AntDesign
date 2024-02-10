@@ -1,6 +1,11 @@
 'use client';
 
-import { DeleteOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  HeartOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import {
   queryOptions,
   useMutation,
@@ -10,6 +15,7 @@ import {
 import { Avatar, Card, Checkbox, Flex, Typography } from 'antd';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import Link from 'next/link';
 
 const { Text } = Typography;
 
@@ -48,7 +54,6 @@ export default function Contacts() {
       return res.data;
     },
     onSuccess: newCl => {
-      console.log(newCl._id);
       const id = newCl._id;
       queryClient.setQueriesData(['contacts'], oldC =>
         oldC.filter(item => item._id !== id)
@@ -112,6 +117,10 @@ export default function Contacts() {
                       favorite({ id: item._id, cred: !item.favorite })
                     }
                   />,
+                  <Link href={'/contacts/' + item._id}>
+                    <EditOutlined key="edit" />,
+                  </Link>,
+
                   <DeleteOutlined
                     onClick={() => {
                       deletes(item._id);

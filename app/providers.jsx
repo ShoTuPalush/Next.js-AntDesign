@@ -4,8 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Layout, Menu, Typography } from 'antd';
 import { MehTwoTone } from '@ant-design/icons';
+import Link from 'next/link';
 const { Header, Footer } = Layout;
-const { Link, Text } = Typography;
+const { Text } = Typography;
 
 export const Providers = ({ children }) => {
   const queryClient = new QueryClient();
@@ -19,8 +20,8 @@ export const Providers = ({ children }) => {
           </Link>
           <Menu
             items={[
-              { key: 1, label: <a href="/">home</a> },
-              { key: 2, label: <a href="/contacts">contacts</a> },
+              { key: 1, label: <Link href="/">home</Link> },
+              { key: 2, label: <Link href="/contacts">contacts</Link> },
               { key: 3, label: 'list' },
             ]}
             defaultSelectedKeys={['1']}
